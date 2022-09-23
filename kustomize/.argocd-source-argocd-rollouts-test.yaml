@@ -1,3 +1,3 @@
 kustomize:
   images:
-  - docker.io/derek331/podinfo@sha256:eaff1c8540bddac9cf518b0b8995b9379a280d3ead0a650276ca12c6e2cbae3a
+  - docker.io/derek331/podinfo@sha256:db5c406f129c7bd45b1f695d7c893035f55b2daad373dc023791e6a536c3b547
