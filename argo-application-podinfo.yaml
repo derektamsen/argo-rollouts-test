@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-rollouts-test
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/write-back-method: git
+    argocd-image-updater.argoproj.io/image-list: podinfo=docker.io/derek331/podinfo:dev
+    argocd-image-updater.argoproj.io/podinfo.update-strategy: digest
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: kustomize
+    repoURL: git@github.com:derektamsen/argo-rollouts-test.git
+    targetRevision: main
