@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: podinfod
-        image: derek331/podinfo@sha256:eaff1c8540bddac9cf518b0b8995b9379a280d3ead0a650276ca12c6e2cbae3a
+        image: docker.io/derek331/podinfo@sha256:eaff1c8540bddac9cf518b0b8995b9379a280d3ead0a650276ca12c6e2cbae3a
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
