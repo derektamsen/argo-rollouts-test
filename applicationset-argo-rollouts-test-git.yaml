@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: argo-rollouts-test-git
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      repoURL: git@github.com:derektamsen/argo-rollouts-test.git
+      revision: main
+      directories:
+      - path: kustomize/docker-desktop/*
+  template:
+    metadata:
+      name: '{{path.basenameNormalized}}-docker-desktop'
+      annotations:
+        argocd-image-updater.argoproj.io/write-back-method: git
+        argocd-image-updater.argoproj.io/image-list: podinfo=docker.io/derek331/podinfo:dev
+        argocd-image-updater.argoproj.io/podinfo.update-strategy: digest
+    spec:
+      project: default
+      source:
+        repoURL: git@github.com:derektamsen/argo-rollouts-test.git
+        targetRevision: main
+        path: '{{path}}'
+      destination:
+        name: 'docker-desktop'
+        namespace: '{{path.basenameNormalized}}'
+      syncPolicy:
+        automated: {}
